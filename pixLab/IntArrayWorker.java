@@ -46,7 +46,17 @@ public class IntArrayWorker
     }
     return total;
   }
-  
+  public int getLargest() {
+	  int largest = matrix[0] [0];
+	  for (int i = 0; i < matrix.length; i++) {
+		  for (int j = 0; j < matrix[i].length; j++) {
+			  if(largest < matrix[i][j]) {
+				 largest = matrix[i][j];
+			  }
+		  }
+	  }
+	  return largest;
+ }
   /**
    * Method to fill with an increasing count
    */
@@ -100,5 +110,28 @@ public class IntArrayWorker
       }
     }
   }
+
+public int getCount(int i) {
+	int pass = 0;
+	for(int i1 = 0; i1 < matrix.length; i1++) {
+		for(int j = 0; j < matrix[i1].length; j++) {
+			if(matrix[i1][j] == matrix[i1][j]) {
+				pass++;
+			}
+			
+		}
+	}
+	return pass/2;
+}
+
+public int getColTotal(int coulm) {
+	int total = 0;
+	for(int i1 = 0; i1 < matrix.length; i1++) {
+			total = total + matrix[i1][coulm];
+			
+		}
+	
+	return total;
+}
  
 }
