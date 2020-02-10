@@ -86,7 +86,18 @@ public class Picture extends SimplePicture
     return output;
     
   }
-  
+  public void Negate() {
+	  Pixel[][] pixels = this.getPixels2D();
+	    for (Pixel[] rowArray : pixels)
+	    {
+	      for (Pixel pixelObj : rowArray)
+	      {
+	        pixelObj.setRed(255-pixelObj.getRed());
+	        pixelObj.setGreen(255-pixelObj.getGreen());
+	        pixelObj.setBlue(255-pixelObj.getBlue());
+	      }
+	    }
+  }
   /** Method to set the blue to 0 */
   public void KeepOnlyBlue()
   {
@@ -216,7 +227,7 @@ public class Picture extends SimplePicture
     this.copy(flower2,100,0);
     this.copy(flower1,200,0);
     Picture flowerNoBlue = new Picture(flower2);
-    flowerNoBlue.zeroBlue();
+    //flowerNoBlue.zeroBlue();
     this.copy(flowerNoBlue,300,0);
     this.copy(flower1,400,0);
     this.copy(flower2,500,0);
@@ -257,10 +268,55 @@ public class Picture extends SimplePicture
    */
   public static void main(String[] args) 
   {
-    Picture beach = new Picture("beach.jpg");
+    Picture beach = new Picture("images\\beach.jpg");
     beach.explore();
-    beach.zeroBlue();
+    beach.HorizontalBotToTop();
     beach.explore();
   }
+
+public void Grayscale() {
+	Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+    	int average = (pixelObj.getRed() + pixelObj.getGreen() + pixelObj.getBlue()) / 3;
+        pixelObj.setRed(average);
+        pixelObj.setGreen(average);
+        pixelObj.setBlue(average);
+      }
+    }
+	
+}
+
+public void fixUnderwater() {
+	Pixel[][] pixels = this.getPixels2D();
+    for (Pixel[] rowArray : pixels)
+    {
+      for (Pixel pixelObj : rowArray)
+      {
+        pixelObj.setRed(pixelObj.getRed() + 60);
+        pixelObj.setGreen(pixelObj.getGreen() + 30);
+        pixelObj.setBlue(pixelObj.getBlue() + 20);
+      }
+    }
+}
+
+public void HorizontalBotToTop() {
+	Pixel[][] pixels = this.getPixels2D();
+    Pixel botPixel = null;
+    Pixel topPixel = null;
+    int length = pixels.height;
+    for (int row = 0; row < length; row++)
+    {
+      for (int col = 0; col < pixels[0].height / 2; col++)
+      {
+        topPixel = pixels[row][col];
+        botPixel = pixels[row][length - row - 1 - col];
+        topPixel.setColor(botPixel.getColor());
+      }
+    } 
+	
+}
   
 } // this } is the end of class Picture, put all new methods before this
