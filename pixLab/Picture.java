@@ -306,10 +306,10 @@ public void HorizontalBotToTop() {
 	Pixel[][] pixels = this.getPixels2D();
     Pixel botPixel = null;
     Pixel topPixel = null;
-    int length = pixels.height;
+    int length = pixels.length;
     for (int row = 0; row < length; row++)
     {
-      for (int col = 0; col < pixels[0].height / 2; col++)
+      for (int col = 0; col < pixels[0].length / 2; col++)
       {
         topPixel = pixels[row][col];
         botPixel = pixels[row][length - row - 1 - col];
