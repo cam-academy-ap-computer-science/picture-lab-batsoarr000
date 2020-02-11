@@ -270,7 +270,7 @@ public class Picture extends SimplePicture
   {
     Picture beach = new Picture("images\\beach.jpg");
     beach.explore();
-    beach.HorizontalBotToTop();
+    beach.Negate();
     beach.explore();
   }
 
@@ -304,19 +304,47 @@ public void fixUnderwater() {
 
 public void HorizontalBotToTop() {
 	Pixel[][] pixels = this.getPixels2D();
-    Pixel botPixel = null;
     Pixel topPixel = null;
-    int length = pixels.length;
-    for (int row = 0; row < length; row++)
+    Pixel botPixel = null;
+    int height = pixels.length;
+    for (int row = 0; row < height /2 ; row++)
     {
-      for (int col = 0; col < pixels[0].length / 2; col++)
+      for (int col = 0; col < pixels[0].length; col++)
       {
         topPixel = pixels[row][col];
-        botPixel = pixels[row][length - row - 1 - col];
+        botPixel = pixels[height - row - 1][col];
         topPixel.setColor(botPixel.getColor());
       }
+    }  
+}
+
+public void MirrorDiagonal() {
+	Pixel[][] pixels = this.getPixels2D();
+    Pixel topPixel = null;
+    Pixel botPixel = null;
+    Pixel leftPixel = null;
+    Pixel rightPixel = null;
+    int height = pixels.length;
+    for (int row = 0; row < height /2 ; row++)
+    {
+      for (int col = 0; col < pixels[0].length; col++)
+      {
+        topPixel = pixels[row][col];
+        botPixel = pixels[height - row - 1][col];
+        botPixel.setColor(topPixel.getColor());
+      }
+    }
+    
+    int width = pixels[0].length;
+    for (int row = 0; row < pixels.length; row++)
+    {
+      for (int col = 0; col < width / 2; col++)
+      {
+        leftPixel = pixels[row][col];
+        rightPixel = pixels[row][width - 1 - col];
+        leftPixel.setColor(rightPixel.getColor());
+      }
     } 
-	
 }
   
 } // this } is the end of class Picture, put all new methods before this

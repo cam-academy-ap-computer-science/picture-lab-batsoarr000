@@ -88,7 +88,7 @@ public class PictureTester
     //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
-    //testNegate();
+    testNegate();
     //testGrayscale();
     //testFixUnderwater();
 	//testMirrorVertical();
@@ -98,7 +98,7 @@ public class PictureTester
     //testMirrorArms();
     //testMirrorGull();
     //testMirrorDiagonal();
-	testHorizontalBotToTop();
+	//testHorizontalBotToTop();
     //testCollage();
     //testCopy();
     //testEdgeDetection();
@@ -111,6 +111,15 @@ public class PictureTester
     //testGetAverageForColumn(0);
   }
 
+private static void testMirrorDiagonal() {
+	Picture beach = new Picture("images\\beach.jpg");
+	  beach.explore();
+	  beach.MirrorDiagonal();
+	  beach.explore();
+	
+	
+}
+
 private static void testHorizontalBotToTop() {
 	Picture beach = new Picture("images\\beach.jpg");
 	  beach.explore();
@@ -119,6 +128,7 @@ private static void testHorizontalBotToTop() {
 	
 }
 
+@SuppressWarnings("unused")
 private static void testFixUnderwater() {
 	Picture beach = new Picture("images\\water.jpg");
 	  beach.explore();
