@@ -72,7 +72,7 @@ public class PictureTester
     swan.explore();
   }
   public static void testKeepOnlyBlue() {
-	  Picture beach = new Picture("images\\beach.jpg");
+	  Picture beach = new Picture("images\\goodphoto8.jpg");
 	  beach.explore();
 	  beach.KeepOnlyBlue();
 	  beach.explore();
@@ -85,7 +85,7 @@ public class PictureTester
     // and comment out the ones you don't want
     // to run
     //testZeroBlue();
-    testKeepOnlyBlue();
+    //testKeepOnlyBlue();
     //testKeepOnlyRed();
     //testKeepOnlyGreen();
     //testNegate();
@@ -95,7 +95,7 @@ public class PictureTester
     //testMirrorVerticalRightToLeft();
 	//testMirrorHorizontal();
     //testMirrorTemple();
-    //testMirrorArms();
+    testMirrorArms();
     //testMirrorGull();
     //testMirrorDiagonal();
 	//testHorizontalBotToTop();
@@ -110,6 +110,14 @@ public class PictureTester
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
   }
+
+private static void testMirrorArms() {
+	  Picture beach = new Picture("images\\snowman.jpg");
+	  beach.explore();
+	  beach.MirrorArms();
+	  beach.explore();
+	
+}
 
 private static void testMirrorDiagonal() {
 	Picture beach = new Picture("images\\beach.jpg");
