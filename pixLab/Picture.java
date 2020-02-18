@@ -218,12 +218,33 @@ public class Picture extends SimplePicture
       }
     }   
   }
+  public void copy2(Picture fromPic, 
+		  int fromStartRow, int fromStartCol, int fromEndRow, int fromEndCol, int toStartRow, int toStartCol)
+  {
+	  Pixel fromPixel = null;
+	  Pixel toPixel = null;
+	  Pixel[][] toPixels = this.getPixels2D();
+	  Pixel[][] fromPixels = fromPic.getPixels2D();
+	  for (int fromRow = fromStartRow, toRow = toStartRow; 
+			  fromRow <= fromEndRow && toRow < toPixels.length; 
+			  fromRow++, toRow++)
+	  {
+		  for (int fromCol = fromStartCol, toCol = toStartCol; 
+				  fromCol <= fromEndCol && toCol < toPixels[0].length;
+				  fromCol++, toCol++)
+		  {
+			  fromPixel = fromPixels[fromRow][fromCol];
+			  toPixel = toPixels[toRow][toCol];
+			  toPixel.setColor(fromPixel.getColor());
+		  }
+	  }   
+  }
 
   /** Method to create a collage of several pictures */
   public void createCollage()
   {
-    Picture flower1 = new Picture("flower1.jpg");
-    Picture flower2 = new Picture("flower2.jpg");
+    Picture flower1 = new Picture("images\\flower1.jpg");
+    Picture flower2 = new Picture("images\\flower2.jpg");
     this.copy(flower1,0,0);
     this.copy(flower2,100,0);
     this.copy(flower1,200,0);
@@ -231,6 +252,26 @@ public class Picture extends SimplePicture
     //flowerNoBlue.zeroBlue();
     this.copy(flowerNoBlue,300,0);
     this.copy(flower1,400,0);
+    this.copy(flower2,500,0);
+    this.mirrorVertical();
+    this.write("collage.jpg");
+  }
+  public void myCollage()
+  {
+    Picture flower1 = new Picture("images\\swan.jpg");
+    Picture flower2 = new Picture("images\\temple.jpg");
+    Picture flower3 = new Picture("images\\wall.jpg");
+    this.copy(flower1,0,0);
+    this.copy(flower2,100,0);
+    this.copy(flower1,200,0);
+    this.copy(flower3,200,0);
+    Picture flowerNoBlue = new Picture(flower2);
+    flowerNoBlue.Grayscale();
+    this.copy(flowerNoBlue,300,0);
+    flower3.HorizontalBotToTop();
+    this.copy(flower3,300,0);
+    flower1.mirrorVertical();
+    this.copy(flower1,300,0);
     this.copy(flower2,500,0);
     this.mirrorVertical();
     this.write("collage.jpg");
@@ -261,6 +302,25 @@ public class Picture extends SimplePicture
           leftPixel.setColor(Color.WHITE);
       }
     }
+    Pixel topPixel = null;
+    Pixel botPixel = null;
+    Pixel[][] pixels1 = this.getPixels2D();
+    Color botColor = null;
+    for (int row = 0; row < pixels1.length; row++)
+    {
+      for (int col = 0; 
+           col < pixels1[0].length-1; col++)
+      {
+        topPixel = pixels1[row][col];
+        botPixel = pixels1[row][col+1];
+        botColor = botPixel.getColor();
+        if (topPixel.colorDistance(botColor) > 
+            edgeDist)
+          topPixel.setColor(Color.BLACK);
+        else
+          topPixel.setColor(Color.WHITE);
+      }
+    }
   }
   
   
@@ -269,9 +329,9 @@ public class Picture extends SimplePicture
    */
   public static void main(String[] args) 
   {
-    Picture beach = new Picture("images\\snowman.jpg");
+    Picture beach = new Picture("images\\barbaraS.jpg");
     beach.explore();
-    beach.MirrorArms();
+    beach.edgeDetection(10);
     beach.explore();
   }
 
@@ -349,25 +409,47 @@ public void MirrorDiagonal() {
 }
 
 public void MirrorArms() {
-	int mirrorPoint = 276;
+	int mirrorPoint = 311;
+    Pixel leftPixel = null;
+    Pixel rightPixel = null;
+    int count = 50;
+    Pixel[][] pixels = this.getPixels2D();
+    
+    // loop through the rows
+    for (int row = 164; row < 200; row++)
+    {
+      // loop from 13 to just before the mirror point
+      for (int col = 250; col < mirrorPoint; col++)
+      {
+        count++;
+        leftPixel = pixels[row][col];      
+        rightPixel = pixels[row+75][mirrorPoint - col + mirrorPoint-210];
+        rightPixel.setColor(leftPixel.getColor());
+      }
+    }
+  }
+
+public void MirrorGull() {
+	int mirrorPoint = 300;
     Pixel leftPixel = null;
     Pixel rightPixel = null;
     int count = 0;
     Pixel[][] pixels = this.getPixels2D();
     
     // loop through the rows
-    for (int row = 153; row < 203; row++)
+    for (int row = 225; row < 337; row++)
     {
       // loop from 13 to just before the mirror point
-      for (int col = 196; col < mirrorPoint; col++)
+      for (int col = 230; col < mirrorPoint; col++)
       {
         count++;
         leftPixel = pixels[row][col];      
-        rightPixel = pixels[row][mirrorPoint - col + mirrorPoint];
+        rightPixel = pixels[row+50][mirrorPoint - col + mirrorPoint+100];
         rightPixel.setColor(leftPixel.getColor());
       }
     }
-  }
+	
+}
 
 
   

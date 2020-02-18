@@ -59,15 +59,15 @@ public class PictureTester
   /** Method to test the collage method */
   public static void testCollage()
   {
-    Picture canvas = new Picture("640x480.jpg");
-    canvas.createCollage();
+    Picture canvas = new Picture("images\\640x480.jpg");
+    canvas.myCollage();
     canvas.explore();
   }
   
   /** Method to test edgeDetection */
   public static void testEdgeDetection()
   {
-    Picture swan = new Picture("swan.jpg");
+    Picture swan = new Picture("images\\barbaraS.jpg");
     swan.edgeDetection(10);
     swan.explore();
   }
@@ -95,13 +95,13 @@ public class PictureTester
     //testMirrorVerticalRightToLeft();
 	//testMirrorHorizontal();
     //testMirrorTemple();
-    testMirrorArms();
+    //testMirrorArms();
     //testMirrorGull();
     //testMirrorDiagonal();
 	//testHorizontalBotToTop();
     //testCollage();
     //testCopy();
-    //testEdgeDetection();
+    testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();
@@ -110,6 +110,14 @@ public class PictureTester
     //testClearBlueOverValue(200);
     //testGetAverageForColumn(0);
   }
+
+private static void testMirrorGull() {
+	Picture beach = new Picture("images\\snowman.jpg");
+	  beach.explore();
+	  beach.MirrorGull();
+	  beach.explore();
+	
+}
 
 private static void testMirrorArms() {
 	  Picture beach = new Picture("images\\snowman.jpg");
