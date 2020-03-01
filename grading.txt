@@ -1,0 +1,26 @@
+A3 Picture Explorer            - 3/3
+A4 getCount                    - 3/3
+A4 getLargest                  - 3/3
+A4 getColTotal                 - 3/3
+A5 keepOnlyBlue                - 3/3
+A5 negate                      - 3/3
+A5 grayscale                   - 3/3
+A6 mirrorVerticalRightToLeft   - 3/3
+A6 mirrorHorizontal            - 0/3 - doesn't run?  Exception:
+Exception in thread "main" java.lang.ArrayIndexOutOfBoundsException: Index -1 out of bounds for length 329
+	at pixLab.Picture.mirrorHorizontal(Picture.java:161)
+	at pixLab.PictureTester.testMirrorHorizontal(PictureTester.java:35)
+	at pixLab.PictureTester.main(PictureTester.java:97)
+
+A6 mirrorHorizontalBottomToTop - 3/3
+A7 mirrorArms                  - 1/3   one arm short.   I think I remember telling you to move on - if you completed this successfully and 
+just went back to print something out for Mr. Harpe, let Mr. Harpe know and you'll get full credit.
+A7 mirrorGull                  - 2/3  partial gull. Poor guy has no tail.
+A8 myCollage                   - 0/3  Not sure what happened here?  
+A9 edgeDetection               - 1/3  The algorithm isn't quite correct, in the sense that rather than looking at a single pixel and comparing
+                                      it to its neighbor to the right AND its neighbor below, you do it in two steps, and CHANGE the pixel
+                                      immediately - so the second pass is working off of modified data.   Since you have a white swan and 
+                                      a dark background, if the first pass changes the color of the water to 'white' because its neighbor
+                                      to the right isn't an edge, and your white swan is below, you'll miss that edge.
+
+ +5 for good effort.   There are a couple things that should've been cleaned up.  36/50
